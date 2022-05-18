@@ -36,8 +36,14 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Upload datasets
-        uses: jaimevalero/push-kaggle-dataset@v1.0.3 # This is the action
+        uses: jaimevalero/push-kaggle-dataset@v3 # This is the action
         env:
           # Do not leak your credentials.
           KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
           KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+        with:
+          title: "Testing github actions for upload datasets"
+          subtitle: "Titanic data2"
+          description: "## Example of dataset syncronized by github actions <br/>Source https://github.com/jaimevalero/test-actions and https://github.com/jaimevalero/push-kaggle-dataset <br/> "
+          files: notebook/gender_submission.csv
+          is_public: true
