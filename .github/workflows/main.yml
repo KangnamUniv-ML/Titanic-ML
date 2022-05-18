@@ -1,49 +1,49 @@
-name: kaggle MLOps
+# name: kaggle MLOps
 
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+# # Controls when the action will run. Triggers the workflow on push or pull request
+# # events but only for the master branch
+# on:
+#   push:
+#     branches: [main]
+#   pull_request:
+#     branches: [main]
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
-jobs:
-  # This workflow contains a single job called "build"
-  upload:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+# # A workflow run is made up of one or more jobs that can run sequentially or in parallel
+# jobs:
+#   # This workflow contains a single job called "build"
+#   upload:
+#     # The type of runner that the job will run on
+#     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+#     # Steps represent a sequence of tasks that will be executed as part of the job
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v2
 
-      - name: Setup Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: "3.7"
-          cache: "pip"
+#       - name: Setup Python
+#         uses: actions/setup-python@v2
+#         with:
+#           python-version: "3.7"
+#           cache: "pip"
 
-      - name: Install Dependencies
-        run: pip install -r requirements.txt
+#       - name: Install Dependencies
+#         run: pip install -r requirements.txt
 
-      - name: Run Script and Update Plot
-        run: |
-          jupyter nbconvert --to script notebook/Titanic.ipynb
-          python notebook/Titanic.py
+#       - name: Run Script and Update Plot
+#         run: |
+#           jupyter nbconvert --to script notebook/Titanic.ipynb
+#           python notebook/Titanic.py
 
-      # Runs a single command using the runners shell
-      - name: Upload datasets
-        uses: jaimevalero/push-kaggle-dataset@v3 # This is the action
-        env:
-          # Do not leak your credentials.
-          KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
-          KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
-        with:
-          title: "Testing github actions for upload datasets"
-          subtitle: "Titanic data2"
-          description: "## Example of dataset syncronized by github actions <br/>Source https://github.com/jaimevalero/test-actions and https://github.com/jaimevalero/push-kaggle-dataset <br/> "
-          files: notebook/gender_submission.csv
-          is_public: true
+#       # Runs a single command using the runners shell
+#       - name: Upload datasets
+#         uses: jaimevalero/push-kaggle-dataset@v3 # This is the action
+#         env:
+#           # Do not leak your credentials.
+#           KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
+#           KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+#         with:
+#           title: "Testing github actions for upload datasets"
+#           subtitle: "Titanic data2"
+#           description: "## Example of dataset syncronized by github actions <br/>Source https://github.com/jaimevalero/test-actions and https://github.com/jaimevalero/push-kaggle-dataset <br/> "
+#           files: notebook/gender_submission.csv
+#           is_public: true
