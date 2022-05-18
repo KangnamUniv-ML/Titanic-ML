@@ -61,9 +61,7 @@ idna==3.3
 imagecodecs==2021.11.20
 ipykernel==6.13.0
 ipympl==0.9.1
-ipython==8.3.0
-ipython-genutils==0.2.0
-ipywidgets==7.7.0
+ipython==7.33.0
 jedi==0.18.1
 Jinja2==3.1.2
 joblib==1.1.0
