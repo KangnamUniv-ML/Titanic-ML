@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  titanic_tensorflow_jupyter:
+    build: ./
+    image: titanic_ml
+    container_name: titanic-ml-container
+    restart: always
+    env_file:
+      - ./.env
+    volumes:
+      - ./notebook:/home/jovyan/work
+    ports:
+      - 9999:8888
