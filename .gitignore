@@ -384,6 +384,7 @@ venv.bak/
 dmypy.json
 kaggle.json
 *.csv
+*.zip
 # Pyre type checker
 .pyre/
 
